@@ -10,29 +10,19 @@
 
         function playRound(comp, player){
             switch(true){
-                case (player.toUpperCase() == 'ROCK' && comp.toUpperCase() == 'PAPER'):
-                    return "You Lose! Paper beats Rock!";
-                    break;
-                case (player.toUpperCase() == 'ROCK' && comp.toUpperCase() == 'SCISSORS'):
-                    winCount++;
-                    return "You Win! Rock beats Scissors!"
-                    break;
-                case (player.toUpperCase() == 'SCISSORS' && comp.toUpperCase() == 'ROCK'):
-                    return "You Lose! Rock beats Scissors!"
-                    break;
-                case (player.toUpperCase() == 'SCISSORS' && comp.toUpperCase() == 'PAPER'):
-                    winCount++;
-                    return "You Win! Scissors beats Paper!"
-                    break;
-                case (player.toUpperCase() == 'PAPER' && comp.toUpperCase() == 'ROCK'):
-                    winCount++;
-                    return "You Win! Paper beats Rock!"
-                    break;
-                case (player.toUpperCase() == 'PAPER' && comp.toUpperCase() == 'SCISSORS'):
-                    return "You Lose! Scissors beats Paper!"
-                    break;
                 case (player.toUpperCase() == comp.toUpperCase()):
                     return "It's a draw!"
+                    break;
+                case (player.toUpperCase() == 'ROCK' && comp.toUpperCase() == 'PAPER'):
+                case (player.toUpperCase() == 'SCISSORS' && comp.toUpperCase() == 'ROCK'):
+                case (player.toUpperCase() == 'PAPER' && comp.toUpperCase() == 'SCISSORS'):
+                    return `You Lose! ${comp} beats ${player}!`;
+                    break;
+                case (player.toUpperCase() == 'ROCK' && comp.toUpperCase() == 'SCISSORS'):
+                case (player.toUpperCase() == 'SCISSORS' && comp.toUpperCase() == 'PAPER'):
+                case (player.toUpperCase() == 'PAPER' && comp.toUpperCase() == 'ROCK'):
+                    winCount++;
+                    return `You Win! ${player} beats ${comp}`
                     break;
             }
 
@@ -44,30 +34,32 @@
             winState = playRound(computerSelection, playerSelection);
             console.log(winState);           
         }
-
-        game();
-        game();
-        game();
-        game();
-        game();
-
-        switch(winCount){
+        
+        function gameResult(count){
+            switch(count){
                 case 0:
-                    console.log('0 wins? WTF');  
+                    return '0 wins? WTF';  
                     break;
                 case 1:
-                    console.log('1? Could be better but you still lost');  
+                    return '1? Could be better but you still lost';  
                     break;
                 case 2:
-                console.log(`You won ${winCount} matches out of 5, but it's still a loss...`);
+                    return `You won ${count} matches out of 5, but it's still a loss...`;
                     break;
                 case 3:
                 case 4:
                 case 5:
-                    console.log(`${winCount} matches out of 5, good going!`);
+                    return `${count} matches out of 5, good going!`;
                     break;
             }
-            console.log(winCount);
+        }
+        game();
+        game();
+        game();
+        game();
+        game();
+
+        console.log(gameResult(winCount));
 
     </script>
 </html>
